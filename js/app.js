@@ -108,14 +108,15 @@ function renderList() {
     if (visible.length === 0) {
         $list.innerHTML = `
             <li class="empty-state">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2
                            M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
-                <p>${filter === 'all' ? 'まだタスクがありません。追加してみましょう！' :
-                     filter === 'active' ? '未完了のタスクはありません。' :
-                     '完了済みのタスクはありません。'}</p>
+                <p>${filter === 'all'       ? 'まだ何もない。' :
+                     filter === 'active'    ? '未完了なし。快調です。' :
+                                             '完了済みはまだなし。'}</p>
             </li>`;
         return;
     }
@@ -129,7 +130,7 @@ function renderList() {
             <input type="checkbox" class="todo-check" ${todo.completed ? 'checked' : ''}
                    aria-label="完了状態を切り替え">
             <span class="todo-title">${escapeHtml(todo.title)}</span>
-            <button class="btn btn-danger" aria-label="削除">
+            <button class="btn-danger" aria-label="削除">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="3 6 5 6 21 6"/>
@@ -150,7 +151,7 @@ function renderFooter() {
     const active    = todos.filter(t => !t.completed).length;
     const completed = todos.filter(t => t.completed).length;
 
-    $countLabel.textContent = `${active} 件残り`;
+    $countLabel.textContent = active > 0 ? `あと ${active} 件` : 'すべて完了 ✓';
     $clearBtn.style.display = completed > 0 ? '' : 'none';
 }
 
