@@ -8,288 +8,224 @@
 </head>
 <body>
 
-<!-- ===================================================================== -->
-<!-- Sticky nav                                                              -->
-<!-- ===================================================================== -->
-<nav class="site-nav">
-    <div class="logo"><b>todo</b>_language</div>
-    <div class="nav-right">
-        <span>superman5-22/todo_language</span>
-        <span class="lang-count">22 言語</span>
-    </div>
-</nav>
-
-<!-- ===================================================================== -->
-<!-- Hero — left-heavy layout, large "22" watermark behind                  -->
-<!-- ===================================================================== -->
-<section class="hero">
-    <div class="hero-text">
-        <p class="hero-eyebrow">// multi-language todo app</p>
-        <h1 class="hero-headline">
-            何言語で<br>書いても、<br><em>TODO</em>は<br>TODO。
-        </h1>
-        <p class="hero-sub">
-            <span class="hl">22 のバックエンド</span>、1 つのフロントエンド。<br>
-            Supabase と Vercel で同じ TODO API を、<br>
-            あらゆる言語・FW で実装して比べるプロジェクト。
-        </p>
-    </div>
-
-    <!-- Terminal-style stats — right column, vertically centered (not bottom-aligned) -->
-    <div class="hero-terminal" aria-hidden="true">
-        <div class="tline"><span class="tk">languages</span><span class="tv">22</span></div>
-        <div class="tline"><span class="tk">database </span><span class="tv">supabase (pg)</span></div>
-        <div class="tline"><span class="tk">deploy   </span><span class="tv">vercel</span></div>
-        <div class="tline"><span class="tk">frontend </span><span class="tv">vanilla js</span></div>
-        <div class="tline"><span class="tk">phase    </span><span class="tv">1 / 8</span></div>
-        <div class="tline"><span class="tk">status   </span><span class="tv building">building...<span class="cursor"></span></span></div>
-    </div>
-</section>
-
-<!-- ===================================================================== -->
-<!-- Language grid                                                           -->
-<!-- ===================================================================== -->
-<div class="langs-wrap">
-
-    <!-- ----------------------------------------------------------------- -->
-    <!-- JavaScript / TypeScript — Node.js is featured (2-row tall card)   -->
-    <!-- ----------------------------------------------------------------- -->
-    <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">JavaScript / TypeScript</span>
-            <span class="cat-count">5</span>
+<!-- =========================================================================
+     Site header
+     First thing the user sees: what this is + how many are done vs planned.
+     ========================================================================= -->
+<header class="site-header">
+    <div class="site-header-inner">
+        <div>
+            <span class="site-name">todo_language</span>
+            <span class="site-tagline">24のバックエンドで同じTODO APIを実装・比較する</span>
         </div>
-        <div class="grid-js">
-            <a href="nodejs/todo_nodejs.html" class="lang-card featured">
-                <span class="card-icon">🟢</span>
-                <span class="card-name">Node.js</span>
-                <span class="card-fw">http (stdlib)</span>
-                <span class="card-status done">✦ 動いてます</span>
+        <!-- Status summary: orientation before the grid -->
+        <div class="site-stats" aria-label="実装状況">
+            <span class="stat-item">
+                <span class="stat-dot stat-dot--done"></span>1 実装済み
+            </span>
+            <span class="stat-sep" aria-hidden="true">·</span>
+            <span class="stat-item">
+                <span class="stat-dot"></span>13 実装予定
+            </span>
+            <span class="stat-sep" aria-hidden="true">·</span>
+            <span class="stat-item">
+                <span class="stat-dot stat-dot--ext"></span>10 外部デプロイ
+            </span>
+        </div>
+    </div>
+</header>
+
+<hr class="site-rule">
+
+<!-- =========================================================================
+     Language grid
+     Grouped by language family. Color encodes status — no extra icons needed.
+       - Green card  = implemented, ready to try
+       - White card  = planned, Vercel-native
+       - Amber card  = external deployment (Railway/Fly.io/etc.)
+     ========================================================================= -->
+<div class="langs">
+
+    <!-- JavaScript / TypeScript -------------------------------------------- -->
+    <div class="lang-group">
+        <div class="group-label">JavaScript / TypeScript</div>
+        <div class="lang-grid">
+            <!-- The only working backend — green card stands out naturally -->
+            <a href="nodejs/todo_nodejs.html" class="lang-card lang-card--done">
+                <div class="card-top">
+                    <span class="card-name">Node.js</span>
+                    <span class="card-tag card-tag--done">稼働中</span>
+                </div>
+                <span class="card-fw">http module · nodejs20.x</span>
             </a>
             <a href="express/todo_express.html" class="lang-card">
-                <span class="card-icon">🚂</span>
-                <span class="card-name">Express</span>
-                <span class="card-fw">express@4</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Express</span></div>
+                <span class="card-fw">express@4 · nodejs20.x</span>
             </a>
             <a href="hono/todo_hono.html" class="lang-card">
-                <span class="card-icon">🔥</span>
-                <span class="card-name">Hono</span>
-                <span class="card-fw">typescript</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Hono</span></div>
+                <span class="card-fw">typescript · nodejs20.x</span>
             </a>
             <a href="deno/todo_deno.html" class="lang-card">
-                <span class="card-icon">🦕</span>
-                <span class="card-name">Deno</span>
+                <div class="card-top"><span class="card-name">Deno</span></div>
                 <span class="card-fw">deno runtime</span>
-                <span class="card-status planned">じきに</span>
             </a>
             <a href="bun/todo_bun.html" class="lang-card">
-                <span class="card-icon">🍞</span>
-                <span class="card-name">Bun</span>
-                <span class="card-fw">bun runtime</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Bun</span></div>
+                <span class="card-fw">bun runtime · nodejs20.x</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- Python — 3 equal columns, tighter section than JS above            -->
-    <!-- ----------------------------------------------------------------- -->
+    <!-- Python ------------------------------------------------------------- -->
     <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">Python</span>
-            <span class="cat-count">3</span>
-        </div>
-        <div class="grid-python">
+        <div class="group-label">Python</div>
+        <div class="lang-grid">
             <a href="flask/todo_flask.html" class="lang-card">
-                <span class="card-icon">🐍</span>
-                <span class="card-name">Flask</span>
-                <span class="card-fw">python / flask</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Flask</span></div>
+                <span class="card-fw">flask · python3.12</span>
             </a>
             <a href="fastapi/todo_fastapi.html" class="lang-card">
-                <span class="card-icon">⚡</span>
-                <span class="card-name">FastAPI</span>
-                <span class="card-fw">python / fastapi</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">FastAPI</span></div>
+                <span class="card-fw">fastapi · python3.12</span>
             </a>
             <a href="django/todo_django.html" class="lang-card">
-                <span class="card-icon">🎸</span>
-                <span class="card-name">Django REST</span>
-                <span class="card-fw">python / drf</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Django REST</span></div>
+                <span class="card-fw">drf · python3.12</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- Go — 4 compact cards, denser density than surrounding sections     -->
-    <!-- ----------------------------------------------------------------- -->
+    <!-- Go ----------------------------------------------------------------- -->
     <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">Go</span>
-            <span class="cat-count">4</span>
-        </div>
-        <div class="grid-go">
+        <div class="group-label">Go</div>
+        <div class="lang-grid">
             <a href="go/todo_go.html" class="lang-card">
-                <span class="card-icon">🐹</span>
-                <span class="card-name">Go</span>
-                <span class="card-fw">net/http</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Go</span></div>
+                <span class="card-fw">net/http · go1.22.x</span>
             </a>
             <a href="gin/todo_gin.html" class="lang-card">
-                <span class="card-icon">🍸</span>
-                <span class="card-name">Gin</span>
-                <span class="card-fw">go / gin</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Gin</span></div>
+                <span class="card-fw">gin · go1.22.x</span>
             </a>
             <a href="echo/todo_echo.html" class="lang-card">
-                <span class="card-icon">🔊</span>
-                <span class="card-name">Echo</span>
-                <span class="card-fw">go / echo</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Echo</span></div>
+                <span class="card-fw">echo · go1.22.x</span>
             </a>
             <a href="fiber/todo_fiber.html" class="lang-card">
-                <span class="card-icon">🌀</span>
-                <span class="card-name">Fiber</span>
-                <span class="card-fw">go / fiber</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Fiber</span></div>
+                <span class="card-fw">fiber · go1.22.x</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- Ruby — 2 cards, doesn't stretch full width (intentional)           -->
-    <!-- ----------------------------------------------------------------- -->
+    <!-- Ruby --------------------------------------------------------------- -->
     <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">Ruby</span>
-            <span class="cat-count">2</span>
-        </div>
-        <div class="grid-ruby">
-            <a href="ruby_rails/todo_rails.html" class="lang-card">
-                <span class="card-icon">💎</span>
-                <span class="card-name">Rails</span>
-                <span class="card-fw">ruby on rails</span>
-                <span class="card-status ext">外出中</span>
-            </a>
+        <div class="group-label">Ruby</div>
+        <div class="lang-grid">
             <a href="sinatra/todo_sinatra.html" class="lang-card">
-                <span class="card-icon">🎤</span>
-                <span class="card-name">Sinatra</span>
-                <span class="card-fw">ruby / sinatra</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">Sinatra</span></div>
+                <span class="card-fw">sinatra · vercel-ruby</span>
+            </a>
+            <a href="ruby_rails/todo_rails.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Rails</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">rails api · Railway</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- PHP — same compact two-col                                          -->
-    <!-- ----------------------------------------------------------------- -->
+    <!-- PHP ---------------------------------------------------------------- -->
     <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">PHP</span>
-            <span class="cat-count">2</span>
-        </div>
-        <div class="grid-php">
+        <div class="group-label">PHP</div>
+        <div class="lang-grid">
             <a href="php/todo_php.html" class="lang-card">
-                <span class="card-icon">🐘</span>
-                <span class="card-name">PHP</span>
-                <span class="card-fw">php 8 (stdlib)</span>
-                <span class="card-status planned">じきに</span>
+                <div class="card-top"><span class="card-name">PHP</span></div>
+                <span class="card-fw">php 8 · vercel-php</span>
             </a>
-            <a href="laravel/todo_laravel.html" class="lang-card">
-                <span class="card-icon">🎡</span>
-                <span class="card-name">Laravel</span>
-                <span class="card-fw">php / laravel</span>
-                <span class="card-status ext">外出中</span>
+            <a href="laravel/todo_laravel.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Laravel</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">laravel · Railway</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- JVM — 3 cols, all external deploy                                   -->
-    <!-- ----------------------------------------------------------------- -->
+    <!-- Java / JVM --------------------------------------------------------- -->
     <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">Java / JVM 系</span>
-            <span class="cat-count">3</span>
-        </div>
-        <div class="grid-jvm">
-            <a href="spring/todo_spring.html" class="lang-card">
-                <span class="card-icon">🍃</span>
-                <span class="card-name">Spring Boot</span>
-                <span class="card-fw">java / spring</span>
-                <span class="card-status ext">外出中</span>
+        <div class="group-label">Java / JVM</div>
+        <div class="lang-grid">
+            <a href="spring/todo_spring.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Spring Boot</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">java · Railway</span>
             </a>
-            <a href="kotlin/todo_kotlin.html" class="lang-card">
-                <span class="card-icon">🦺</span>
-                <span class="card-name">Ktor</span>
-                <span class="card-fw">kotlin / ktor</span>
-                <span class="card-status ext">外出中</span>
+            <a href="kotlin/todo_kotlin.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Ktor</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">kotlin · Railway</span>
             </a>
-            <a href="scala/todo_scala.html" class="lang-card">
-                <span class="card-icon">🔴</span>
-                <span class="card-name">Play</span>
-                <span class="card-fw">scala / play</span>
-                <span class="card-status ext">外出中</span>
+            <a href="scala/todo_scala.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Play</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">scala · Render</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- Others — 4-col dense, orphaned last card is fine                   -->
-    <!-- ----------------------------------------------------------------- -->
+    <!-- その他 ------------------------------------------------------------- -->
     <div class="lang-group">
-        <div class="cat-header">
-            <span class="cat-title">その他</span>
-            <span class="cat-count">5</span>
-        </div>
-        <div class="grid-other">
-            <a href="rust/todo_rust.html" class="lang-card">
-                <span class="card-icon">🦀</span>
-                <span class="card-name">Rust</span>
-                <span class="card-fw">actix-web</span>
-                <span class="card-status ext">外出中</span>
+        <div class="group-label">その他</div>
+        <div class="lang-grid">
+            <a href="rust/todo_rust.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Rust</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">actix-web · Fly.io</span>
             </a>
-            <a href="csharp/todo_csharp.html" class="lang-card">
-                <span class="card-icon">🔷</span>
-                <span class="card-name">ASP.NET Core</span>
-                <span class="card-fw">c# minimal api</span>
-                <span class="card-status ext">外出中</span>
+            <a href="csharp/todo_csharp.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">ASP.NET Core</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">c# minimal api · Azure</span>
             </a>
-            <a href="elixir/todo_elixir.html" class="lang-card">
-                <span class="card-icon">💜</span>
-                <span class="card-name">Phoenix</span>
-                <span class="card-fw">elixir / phoenix</span>
-                <span class="card-status ext">外出中</span>
+            <a href="elixir/todo_elixir.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Phoenix</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">elixir · Fly.io</span>
             </a>
-            <a href="swift/todo_swift.html" class="lang-card">
-                <span class="card-icon">🐦</span>
-                <span class="card-name">Vapor</span>
-                <span class="card-fw">swift / vapor</span>
-                <span class="card-status ext">外出中</span>
+            <a href="swift/todo_swift.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Vapor</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">swift · Fly.io</span>
             </a>
-            <a href="perl/todo_perl.html" class="lang-card">
-                <span class="card-icon">🐪</span>
-                <span class="card-name">Mojolicious</span>
-                <span class="card-fw">perl</span>
-                <span class="card-status ext">外出中</span>
+            <a href="perl/todo_perl.html" class="lang-card lang-card--ext">
+                <div class="card-top">
+                    <span class="card-name">Mojolicious</span>
+                    <span class="card-tag card-tag--ext">外部</span>
+                </div>
+                <span class="card-fw">perl · Heroku</span>
             </a>
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------- -->
-    <!-- External deploy note                                                -->
-    <!-- ----------------------------------------------------------------- -->
-    <div class="external-note">
-        <strong>⚡ "外出中" のバックエンドについて</strong><br>
-        Spring Boot・Rust・C#・Elixir など、Vercel Serverless Functions が対応していない言語は
-        <code>Railway</code>・<code>Fly.io</code>・<code>Render</code> 等の外部サービスへデプロイします。
-        フロントエンドの <code>API_BASE</code> 変数を外部 URL に書き換えるだけで切り替わります。
-    </div>
-
-</div><!-- /langs-wrap -->
+</div><!-- /langs -->
 
 </body>
 </html>

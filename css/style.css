@@ -1,6 +1,6 @@
 /* =============================================================================
    Multi-Language TODO App — Common Stylesheet
-   Redesigned: human-first, asymmetric, no cookie-cutter grids
+   White base. Semantic colors: one color, one meaning.
    ============================================================================= */
 
 /* --------------------------------------------------------------------------- */
@@ -9,28 +9,52 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --bg:        #08080f;
-    --bg-alt:    #0d0d1a;
-    --surface:   #111120;
-    --surface-2: #181828;
-    --border:    #22223a;
-    --border-h:  #363656;
-    --text:      #ddddf2;
-    --text-2:    #8888b0;
-    --text-3:    #44445e;
+    /* --- Backgrounds -------------------------------------------------------- */
+    --bg:       #ffffff;
+    --bg-off:   #fafafa;
+    --bg-dim:   #f4f4f5;
 
-    --accent:    #7c6af7;
-    --accent-d:  #5a4dd6;
-    --amber:     #f0a020;    /* "implemented" */
-    --green:     #2dd4a0;
-    --red:       #f06060;
-    --red-s:     #f89090;
+    /* --- Borders ------------------------------------------------------------ */
+    --line:     #e4e4e7;
+    --line-h:   #d4d4d8;
 
+    /* --- Text hierarchy (4 levels, strictly used) --------------------------- */
+    --ink:      #18181b;   /* headings, key labels */
+    --body:     #3f3f46;   /* paragraph, list items */
+    --muted:    #71717a;   /* secondary labels, hints */
+    --faint:    #a1a1aa;   /* disabled, timestamps, placeholder */
+
+    /* --- Semantic colors — each has exactly ONE meaning --------------------- */
+
+    /* Green: implemented / task completed */
+    --c-done:    #16a34a;
+    --c-done-bg: #f0fdf4;
+    --c-done-bd: #bbf7d0;
+
+    /* Amber: external deployment required */
+    --c-ext:    #b45309;
+    --c-ext-bg: #fffbeb;
+    --c-ext-bd: #fde68a;
+
+    /* Red: errors + delete actions */
+    --c-err:    #dc2626;
+    --c-err-bg: #fef2f2;
+    --c-err-bd: #fecaca;
+
+    /* Near-black: primary action buttons */
+    --c-act:    #18181b;
+    --c-act-h:  #27272a;
+
+    /* Blue: focus ring only — never used for anything else */
+    --c-focus:  #2563eb;
+
+    /* --- Typography --------------------------------------------------------- */
     --font: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
+    --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
 
-    --r:  5px;
-    --r2: 11px;
+    /* --- Radii -------------------------------------------------------------- */
+    --r:  6px;
+    --r2: 10px;
 }
 
 html {
@@ -41,533 +65,334 @@ html {
 
 body {
     background: var(--bg);
-    color: var(--text);
+    color: var(--body);
     font-family: var(--font);
     line-height: 1.55;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border-h); border-radius: 3px; }
+a { color: var(--ink); text-decoration: underline; }
+a:hover { color: var(--muted); }
 
 /* =============================================================================
    INDEX PAGE
    ============================================================================= */
 
 /* --------------------------------------------------------------------------- */
-/* Sticky nav — minimal                                                          */
+/* Site header — compact, scannable summary right-aligned                       */
 /* --------------------------------------------------------------------------- */
-.site-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.site-header {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2.25rem 2rem 1.75rem;
+}
+
+.site-header-inner {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: .7rem 2rem;
-    background: rgba(8,8,15,.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-.site-nav .logo {
+.site-name {
+    display: block;
     font-family: var(--mono);
-    font-size: .82rem;
-    color: var(--text-2);
-    letter-spacing: .03em;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: .3rem;
+    text-decoration: none;
 }
-.site-nav .logo b { color: var(--text); }
+.site-name:hover { color: var(--muted); }
 
-.nav-right {
+.site-tagline {
+    font-size: .875rem;
+    color: var(--muted);
+}
+
+/* Status counts — the first orientation point before the grid */
+.site-stats {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    font-family: var(--mono);
-    font-size: .72rem;
-    color: var(--text-3);
-}
-
-.lang-count {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: .18rem .65rem;
-    color: var(--text-2);
-}
-
-/* --------------------------------------------------------------------------- */
-/* Hero — asymmetric two-col, number watermark                                  */
-/* --------------------------------------------------------------------------- */
-.hero {
-    min-height: calc(100vh - 48px);
-    display: grid;
-    grid-template-columns: 56fr 44fr;
-    align-items: end;
-    padding: 4rem 2rem 5.5rem;
-    gap: 3rem;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Large "22" in background — intentional imbalance */
-.hero::before {
-    content: '22';
-    position: absolute;
-    right: -1.5rem;
-    bottom: -5rem;
-    font-size: clamp(14rem, 28vw, 24rem);
-    font-weight: 900;
-    font-family: var(--mono);
-    color: var(--surface);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-    letter-spacing: -.06em;
-}
-
-/* Subtle accent glow, off-center */
-.hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 68% 38%, rgba(124,106,247,.055), transparent 58%);
-    pointer-events: none;
-}
-
-.hero-text { position: relative; z-index: 1; }
-
-.hero-eyebrow {
+    gap: .5rem;
     font-family: var(--mono);
     font-size: .75rem;
-    color: var(--text-3);
-    letter-spacing: .07em;
-    margin-bottom: 1.75rem;
+    color: var(--muted);
+    flex-shrink: 0;
 }
 
-.hero-headline {
-    font-size: clamp(2.8rem, 6.5vw, 5.2rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -.04em;
-    margin-bottom: 1.75rem;
-}
-
-.hero-headline em {
-    font-style: normal;
-    color: var(--accent);
-}
-
-.hero-sub {
-    font-size: 1rem;
-    color: var(--text-2);
-    line-height: 1.7;
-    max-width: 40ch;
-}
-.hero-sub .hl { color: var(--text); font-weight: 500; }
-
-/* Terminal stats box — positioned slightly higher than the text baseline */
-.hero-terminal {
-    position: relative;
-    z-index: 1;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--r2);
-    padding: 1.35rem 1.6rem 1.5rem;
-    font-family: var(--mono);
-    font-size: .8rem;
-    line-height: 2;
-    align-self: center;
-    margin-bottom: 2rem; /* deliberately not flush with the text bottom */
-}
-
-.hero-terminal .tline { display: flex; gap: .6rem; }
-.hero-terminal .tk    { color: var(--text-3); min-width: 9ch; }
-.hero-terminal .tv    { color: var(--green); }
-.hero-terminal .tv.building { color: var(--amber); }
-
-.cursor {
+.stat-dot {
     display: inline-block;
     width: 7px;
-    height: .95em;
-    background: var(--accent);
-    vertical-align: text-bottom;
-    animation: blink 1.15s step-end infinite;
-    margin-left: 1px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--faint);
+    flex-shrink: 0;
 }
-@keyframes blink { 50% { opacity: 0; } }
+.stat-dot--done { background: var(--c-done); }
+.stat-dot--ext  { background: var(--c-ext); }
 
-/* --------------------------------------------------------------------------- */
-/* Language sections container                                                   */
-/* --------------------------------------------------------------------------- */
-.langs-wrap {
-    padding: 1rem 2rem 7rem;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-/* --------------------------------------------------------------------------- */
-/* Category groups — each has its own rhythm                                     */
-/* --------------------------------------------------------------------------- */
-.lang-group {
-    margin-bottom: 3.75rem;
-}
-
-.cat-header {
+.stat-item {
     display: flex;
-    align-items: baseline;
-    gap: .9rem;
-    padding-bottom: .7rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.25rem;
+    align-items: center;
+    gap: .35rem;
 }
 
-.cat-title {
-    font-family: var(--mono);
-    font-size: .7rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--text-3);
-}
+.stat-sep { color: var(--line-h); user-select: none; }
 
-.cat-count {
-    font-family: var(--mono);
-    font-size: .65rem;
-    color: var(--border-h);
+.site-rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 2rem;
+    max-width: calc(1120px - 4rem);
 }
 
 /* --------------------------------------------------------------------------- */
-/* Language card grids — intentionally different per section                     */
+/* Language section groups                                                       */
 /* --------------------------------------------------------------------------- */
-
-/* JS/TS: Node.js featured (spans 2 rows), rest normal */
-.grid-js {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: .7rem;
-}
-.grid-js .lang-card:first-child { grid-row: 1 / 3; }
-
-/* Python: 3 equal columns */
-.grid-python {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .7rem;
-}
-
-/* Go: 4 compact columns — denser than the others */
-.grid-go {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: .7rem;
-}
-
-/* Ruby: 2 cols, left-anchored — doesn't fill full width */
-.grid-ruby {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 480px;
-    gap: .7rem;
-}
-
-/* PHP: same compact two-col */
-.grid-php {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 480px;
-    gap: .7rem;
-}
-
-/* JVM: 3 equal */
-.grid-jvm {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .7rem;
-}
-
-/* Others: 4-col, can orphan — that's OK */
-.grid-other {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: .7rem;
-}
-
-/* --------------------------------------------------------------------------- */
-/* Language card                                                                  */
-/* --------------------------------------------------------------------------- */
-.lang-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--r2);
-    padding: 1rem 1.1rem .95rem;
-    text-decoration: none;
-    color: var(--text);
+.langs {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
     display: flex;
     flex-direction: column;
-    gap: .25rem;
-    transition: border-color .16s, transform .2s;
-    position: relative;
-    overflow: hidden;
+    gap: 2.25rem;
 }
 
-/* Left accent bar — only shows on hover normally */
-.lang-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: transparent;
-    transition: background .16s;
+.lang-group {}
+
+.group-label {
+    font-family: var(--mono);
+    font-size: .67rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--faint);
+    margin-bottom: .65rem;
+}
+
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+    gap: .5rem;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Language cards — color communicates status, not just a badge                  */
+/* --------------------------------------------------------------------------- */
+.lang-card {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    padding: .9rem 1rem .85rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--r2);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .14s;
+    min-height: 78px;
 }
 
 .lang-card:hover {
-    border-color: var(--border-h);
-    transform: translateY(-2px);
+    border-color: var(--line-h);
     text-decoration: none;
+    color: inherit;
 }
-.lang-card:hover::before { background: var(--accent); }
 
-/* Featured card — the one that's actually working */
-.lang-card.featured {
-    padding: 1.6rem 1.4rem 1.5rem;
-    background: var(--bg-alt);
-    border-color: var(--border-h);
+/* Implemented: green tint — visually stands out without being loud */
+.lang-card--done {
+    background: var(--c-done-bg);
+    border-color: var(--c-done-bd);
 }
-.lang-card.featured::before { background: var(--amber); } /* amber = done */
-.lang-card.featured:hover   { transform: translateY(-3px); }
+.lang-card--done:hover { border-color: var(--c-done); }
 
-.card-icon {
-    font-size: 1.4rem;
-    line-height: 1;
-    margin-bottom: .15rem;
+/* External deploy: amber tint — signals it needs extra steps */
+.lang-card--ext {
+    background: var(--c-ext-bg);
+    border-color: var(--c-ext-bd);
 }
-.lang-card.featured .card-icon { font-size: 2rem; }
+.lang-card--ext:hover { border-color: var(--c-ext); }
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: .4rem;
+}
 
 .card-name {
     font-weight: 600;
-    font-size: .9rem;
+    font-size: .875rem;
+    color: var(--ink);
     line-height: 1.2;
+    word-break: break-word;
 }
-.lang-card.featured .card-name { font-size: 1.25rem; }
+
+.card-tag {
+    font-family: var(--mono);
+    font-size: .6rem;
+    padding: .14rem .38rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+.card-tag--done { background: var(--c-done-bd); color: var(--c-done); }
+.card-tag--ext  { background: var(--c-ext-bd);  color: var(--c-ext); }
 
 .card-fw {
     font-family: var(--mono);
     font-size: .67rem;
-    color: var(--text-3);
-}
-
-.card-status {
-    display: inline-flex;
-    align-items: center;
-    gap: .25rem;
-    font-family: var(--mono);
-    font-size: .65rem;
-    padding: .18rem .48rem;
-    border-radius: 3px;
-    margin-top: .4rem;
-    align-self: flex-start;
-}
-.card-status.done    { background: rgba(240,160,32,.1);  color: var(--amber); }
-.card-status.planned { background: rgba(124,106,247,.1); color: var(--accent); }
-.card-status.ext     { background: rgba(45,212,160,.07); color: var(--green); opacity: .85; }
-
-/* --------------------------------------------------------------------------- */
-/* External-deploy note                                                          */
-/* --------------------------------------------------------------------------- */
-.external-note {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--green);
-    border-radius: var(--r);
-    padding: 1.1rem 1.5rem;
-    margin-top: -.5rem;
-    font-size: .85rem;
-    line-height: 1.7;
-    color: var(--text-2);
-    max-width: 680px;
-}
-.external-note strong { color: var(--text); }
-.external-note code {
-    font-family: var(--mono);
-    font-size: .78rem;
-    background: var(--surface-2);
-    padding: .1rem .32rem;
-    border-radius: 3px;
-    color: var(--green);
+    color: var(--faint);
+    line-height: 1.4;
 }
 
 /* =============================================================================
    TODO APP PAGE
    ============================================================================= */
 
-.page-wrap {
-    max-width: 660px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 6rem;
+/* --------------------------------------------------------------------------- */
+/* Sticky top bar — back nav + lang context                                     */
+/* --------------------------------------------------------------------------- */
+.page-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .85rem 1.5rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
 }
 
-/* --------------------------------------------------------------------------- */
-/* Back link                                                                     */
-/* --------------------------------------------------------------------------- */
 .back-link {
     display: inline-flex;
     align-items: center;
-    gap: .35rem;
-    font-family: var(--mono);
-    font-size: .73rem;
-    color: var(--text-3);
-    margin-bottom: 2.75rem;
-    transition: color .14s;
+    gap: .3rem;
+    font-size: .8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .12s;
 }
-.back-link:hover { color: var(--text-2); text-decoration: none; }
+.back-link:hover { color: var(--ink); }
 
-/* --------------------------------------------------------------------------- */
-/* Page header — lang label small, "TODO" large                                  */
-/* --------------------------------------------------------------------------- */
-.page-header { margin-bottom: 2.25rem; }
+.topbar-lang {
+    display: flex;
+    align-items: baseline;
+    gap: .6rem;
+}
 
-.page-lang-name {
+.lang-badge {
+    font-family: var(--mono);
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.lang-runtime {
     font-family: var(--mono);
     font-size: .7rem;
-    color: var(--text-3);
-    letter-spacing: .07em;
-    margin-bottom: .65rem;
-}
-
-.page-title {
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 800;
-    letter-spacing: -.05em;
-    line-height: 1;
-    color: var(--text);
-    margin-bottom: .6rem;
-}
-
-/* Runtime badge with a pulsing dot */
-.page-runtime {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    font-family: var(--mono);
-    font-size: .73rem;
-    color: var(--text-3);
-}
-.page-runtime::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    min-width: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse-dot 2.6s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: .15; }
+    color: var(--faint);
 }
 
 /* --------------------------------------------------------------------------- */
-/* Status bar                                                                    */
+/* Page content                                                                  */
+/* --------------------------------------------------------------------------- */
+.page-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 6rem;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Status bar — appears inline, not as a floating overlay                        */
 /* --------------------------------------------------------------------------- */
 #status-bar {
     display: none;
     align-items: center;
-    gap: .5rem;
-    font-family: var(--mono);
-    font-size: .76rem;
-    padding: .55rem .9rem;
+    gap: .4rem;
+    font-size: .775rem;
+    padding: .5rem .8rem;
     border-radius: var(--r);
     margin-bottom: 1.1rem;
+    border: 1px solid transparent;
+    line-height: 1.4;
 }
 #status-bar.visible { display: flex; }
 
 #status-bar.loading {
-    background: rgba(124,106,247,.07);
-    border: 1px solid rgba(124,106,247,.22);
-    color: var(--accent);
+    background: var(--bg-dim);
+    border-color: var(--line);
+    color: var(--muted);
 }
 #status-bar.success {
-    background: rgba(45,212,160,.06);
-    border: 1px solid rgba(45,212,160,.18);
-    color: var(--green);
+    background: var(--c-done-bg);
+    border-color: var(--c-done-bd);
+    color: var(--c-done);
 }
 #status-bar.error {
-    background: rgba(240,96,96,.07);
-    border: 1px solid rgba(240,96,96,.2);
-    color: var(--red-s);
+    background: var(--c-err-bg);
+    border-color: var(--c-err-bd);
+    color: var(--c-err);
 }
 
 /* --------------------------------------------------------------------------- */
-/* Input row — unified border box feel                                           */
+/* Input row — the primary action, visually dominant                             */
 /* --------------------------------------------------------------------------- */
 .input-row {
     display: flex;
-    align-items: stretch;
-    margin-bottom: 1.4rem;
-    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    border: 1.5px solid var(--line-h);
     border-radius: var(--r);
-    background: var(--surface);
     overflow: hidden;
-    transition: border-color .15s, box-shadow .15s;
+    background: var(--bg);
+    transition: border-color .14s, box-shadow .14s;
 }
 .input-row:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(124,106,247,.1);
+    border-color: var(--c-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
 }
 
 .input-row input[type="text"] {
     flex: 1;
-    background: transparent;
     border: none;
     outline: none;
     padding: .82rem 1rem;
-    color: var(--text);
     font-size: .95rem;
     font-family: var(--font);
+    color: var(--ink);
+    background: transparent;
     min-width: 0;
 }
-.input-row input[type="text"]::placeholder { color: var(--text-3); }
-
-.input-hint {
-    display: flex;
-    align-items: center;
-    padding: 0 .7rem;
-    font-family: var(--mono);
-    font-size: .65rem;
-    color: var(--text-3);
-    border-left: 1px solid var(--border);
-    white-space: nowrap;
-    user-select: none;
-}
+.input-row input[type="text"]::placeholder { color: var(--faint); }
 
 #add-btn {
-    background: var(--accent);
-    color: #fff;
     border: none;
-    padding: .82rem 1.1rem;
-    font-size: .85rem;
+    background: var(--c-act);
+    color: #fff;
+    padding: .82rem 1.25rem;
+    font-size: .875rem;
     font-weight: 600;
     cursor: pointer;
     font-family: var(--font);
-    transition: background .14s;
     white-space: nowrap;
+    transition: background .12s;
+    flex-shrink: 0;
 }
-#add-btn:hover:not(:disabled) { background: var(--accent-d); }
-#add-btn:disabled { opacity: .4; cursor: not-allowed; }
+#add-btn:hover:not(:disabled) { background: var(--c-act-h); }
+#add-btn:disabled {
+    background: var(--faint);
+    cursor: not-allowed;
+}
 
 /* --------------------------------------------------------------------------- */
-/* Filter — tab-underline, not pills                                             */
+/* Filter bar — tab-underline style                                              */
 /* --------------------------------------------------------------------------- */
 .filter-bar {
     display: flex;
-    gap: 0;
-    margin-bottom: 1.1rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 0;
 }
 
 .filter-btn {
@@ -576,62 +401,59 @@ a:hover { text-decoration: underline; }
     border: none;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
-    padding: .45rem .95rem;
+    padding: .45rem .9rem;
     font-size: .8rem;
-    color: var(--text-3);
+    color: var(--muted);
     cursor: pointer;
     font-family: var(--font);
-    transition: color .13s, border-color .13s;
+    transition: color .12s, border-color .12s;
 }
-.filter-btn:hover  { color: var(--text-2); }
-.filter-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+.filter-btn:hover { color: var(--body); }
+.filter-btn.active {
+    color: var(--ink);
+    font-weight: 500;
+    border-bottom-color: var(--ink);
+}
 
 /* --------------------------------------------------------------------------- */
-/* Todo list — border-separated rows, no cards                                   */
+/* Todo list — clean row separation                                              */
 /* --------------------------------------------------------------------------- */
 #todo-list { list-style: none; }
 
 .todo-item {
     display: flex;
     align-items: center;
-    gap: .8rem;
-    padding: .8rem 0;
-    border-bottom: 1px solid var(--border);
-    animation: item-in .15s ease;
+    gap: .75rem;
+    padding: .75rem 0;
+    border-bottom: 1px solid var(--line);
 }
-@keyframes item-in {
-    from { opacity: 0; transform: translateX(-5px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
-.todo-item:first-child { border-top: 1px solid var(--border); }
 .todo-item:last-child  { border-bottom: none; }
-.todo-item.completed   { opacity: .4; }
+.todo-item.completed   { opacity: .45; }
 
-/* Checkbox — square, minimal */
+/* Custom checkbox */
 .todo-check {
     appearance: none;
     -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    min-width: 17px;
-    border: 1.5px solid var(--border-h);
-    border-radius: 3px;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 1.5px solid var(--line-h);
+    border-radius: 4px;
     cursor: pointer;
     position: relative;
-    transition: background .13s, border-color .13s;
+    background: var(--bg);
+    transition: background .12s, border-color .12s;
+    flex-shrink: 0;
 }
-.todo-check:hover { border-color: var(--accent); }
-.todo-check:checked {
-    background: var(--accent);
-    border-color: var(--accent);
-}
+.todo-check:hover   { border-color: var(--c-done); }
+.todo-check:checked { background: var(--c-done); border-color: var(--c-done); }
 .todo-check:checked::after {
     content: '';
     position: absolute;
     left: 4px;
     top: 1px;
-    width: 5px;
-    height: 9px;
+    width: 6px;
+    height: 10px;
     border: 1.5px solid #fff;
     border-top: none;
     border-left: none;
@@ -640,137 +462,114 @@ a:hover { text-decoration: underline; }
 
 .todo-title {
     flex: 1;
-    font-size: .92rem;
+    font-size: .9rem;
+    color: var(--body);
     line-height: 1.45;
-    word-break: break-word;
+    word-break: break-word; /* long titles wrap, never overflow */
 }
 .todo-item.completed .todo-title {
     text-decoration: line-through;
-    color: var(--text-3);
+    color: var(--faint);
 }
 
-/* Delete button — hidden until row hovered */
+/* Delete button — low opacity at rest, always tappable (touch-friendly) */
 .btn-danger {
     appearance: none;
     background: none;
     border: none;
-    color: var(--border-h);
     cursor: pointer;
-    padding: .22rem;
+    padding: .25rem .3rem;
     border-radius: var(--r);
+    color: var(--faint);
     display: flex;
     align-items: center;
-    transition: color .13s, background .13s;
-    opacity: 0;
     flex-shrink: 0;
+    opacity: .4;
+    transition: opacity .12s, color .12s, background .12s;
 }
-.todo-item:hover .btn-danger { opacity: 1; }
-.btn-danger:hover {
-    color: var(--red);
-    background: rgba(240,96,96,.08);
+.btn-danger:hover,
+.todo-item:hover .btn-danger {
+    opacity: 1;
+    color: var(--c-err);
+    background: var(--c-err-bg);
 }
 
 /* --------------------------------------------------------------------------- */
-/* Empty state                                                                    */
+/* Empty state — minimal, not apologetic                                         */
 /* --------------------------------------------------------------------------- */
 .empty-state {
+    padding: 3rem 0 1rem;
     text-align: center;
-    padding: 3.5rem 0 2rem;
-    color: var(--text-3);
+    color: var(--faint);
     font-size: .85rem;
+    list-style: none;
 }
-.empty-state svg   { opacity: .25; margin-bottom: .75rem; }
-.empty-state p     { margin-top: .5rem; }
+.empty-state p { margin-top: .4rem; }
 
 /* --------------------------------------------------------------------------- */
-/* Footer — sparse                                                               */
+/* Todo footer                                                                   */
 /* --------------------------------------------------------------------------- */
 .todo-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: .9rem;
+    padding-top: .8rem;
+    min-height: 2rem;
+}
+
+#count-label {
+    font-size: .75rem;
     font-family: var(--mono);
-    font-size: .7rem;
-    color: var(--text-3);
-    min-height: 1.5rem;
+    color: var(--faint);
 }
 
 #clear-completed {
     appearance: none;
     background: none;
     border: none;
-    color: var(--text-3);
-    font-family: var(--mono);
-    font-size: .7rem;
+    font-size: .75rem;
+    color: var(--faint);
     cursor: pointer;
+    font-family: var(--font);
     padding: 0;
-    transition: color .13s;
+    transition: color .12s;
 }
-#clear-completed:hover { color: var(--red); }
+#clear-completed:hover { color: var(--c-err); }
 
-/* --------------------------------------------------------------------------- */
-/* Shared .btn / .btn-primary (used outside todo list context)                   */
-/* --------------------------------------------------------------------------- */
+/* =============================================================================
+   SHARED UTILITIES — for contexts outside the todo list
+   ============================================================================= */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: .65rem 1.1rem;
+    padding: .6rem 1.1rem;
     border: none;
     border-radius: var(--r);
     font-size: .875rem;
     font-weight: 600;
     cursor: pointer;
     font-family: var(--font);
-    transition: background .14s, transform .1s;
+    transition: background .12s;
 }
-.btn:active  { transform: scale(.97); }
 .btn:disabled { opacity: .4; cursor: not-allowed; }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover:not(:disabled) { background: var(--accent-d); }
+.btn-primary  { background: var(--c-act); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--c-act-h); }
 
 /* =============================================================================
    RESPONSIVE
    ============================================================================= */
-
-@media (max-width: 920px) {
-    .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 3rem 1.75rem 4.5rem;
-    }
-    .hero::before { font-size: 40vw; right: -.5rem; bottom: -2.5rem; }
-    .hero-terminal { display: none; }
-    .hero-sub { max-width: 52ch; }
-
-    .grid-js {
-        grid-template-columns: 1fr 1fr;
-    }
-    .grid-js .lang-card:first-child {
-        grid-row: auto;
-        grid-column: 1 / -1;
-    }
-    .grid-go    { grid-template-columns: repeat(2, 1fr); }
-    .grid-jvm   { grid-template-columns: repeat(2, 1fr); }
-    .grid-other { grid-template-columns: repeat(2, 1fr); }
-    .langs-wrap { padding: 1rem 1.75rem 5rem; }
+@media (max-width: 800px) {
+    .site-header       { padding: 1.5rem 1.25rem 1.25rem; }
+    .site-rule         { margin: 0 1.25rem; }
+    .langs             { padding: 1.5rem 1.25rem 4rem; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; gap: .75rem; }
+    .site-stats        { flex-wrap: wrap; }
 }
 
-@media (max-width: 600px) {
-    .site-nav .nav-right { display: none; }
-    .hero-headline { font-size: 2.4rem; }
-    .hero { padding: 2.5rem 1.25rem 4rem; }
-    .langs-wrap { padding: 1rem 1.25rem 4rem; }
-
-    .grid-js      { grid-template-columns: 1fr; }
-    .grid-python  { grid-template-columns: 1fr 1fr; }
-    .grid-go      { grid-template-columns: 1fr 1fr; }
-    .grid-ruby    { grid-template-columns: 1fr; max-width: none; }
-    .grid-php     { grid-template-columns: 1fr; max-width: none; }
-    .grid-jvm     { grid-template-columns: 1fr; }
-    .grid-other   { grid-template-columns: 1fr 1fr; }
-
-    .input-hint   { display: none; }
-    .page-wrap    { padding: 1.5rem 1.1rem 5rem; }
+@media (max-width: 480px) {
+    .lang-grid    { grid-template-columns: repeat(2, 1fr); }
+    .page-topbar  { padding: .7rem 1rem; }
+    .lang-runtime { display: none; }
+    .page-content { padding: 2rem 1rem 5rem; }
 }
