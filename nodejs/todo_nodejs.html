@@ -7,54 +7,56 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<div class="page-wrap">
 
-    <!-- Back link -->
+<!-- Sticky context bar: always shows which backend you're on -->
+<div class="page-topbar">
     <a href="../index.html" class="back-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"
+             aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
         </svg>
-        一覧に戻る
+        一覧
     </a>
+    <div class="topbar-lang">
+        <span class="lang-badge">node.js</span>
+        <span class="lang-runtime">http module · Vercel Serverless</span>
+    </div>
+</div>
 
-    <!-- Header: lang name (small) / huge "TODO" / runtime info -->
-    <header class="page-header">
-        <p class="page-lang-name">node.js</p>
-        <h1 class="page-title">TODO</h1>
-        <p class="page-runtime">http module &nbsp;·&nbsp; Vercel Serverless Function</p>
-    </header>
+<!-- Main content -->
+<div class="page-content">
 
-    <!-- Status bar (shown by app.js) -->
+    <!-- Status bar: API connection feedback (shown by app.js) -->
     <div id="status-bar" role="alert" aria-live="polite"></div>
 
-    <!-- Input: text + enter-hint + add button, all one unified box -->
+    <!-- Input: the primary action of this page -->
     <div class="input-row">
-        <input type="text" id="todo-input" placeholder="何する？" autocomplete="off"
-               aria-label="新しいタスク">
-        <span class="input-hint" aria-hidden="true">↵ で追加</span>
-        <button id="add-btn" aria-label="追加">追加</button>
+        <input type="text" id="todo-input"
+               placeholder="何する？"
+               autocomplete="off"
+               aria-label="新しいタスクを入力">
+        <button id="add-btn" aria-label="タスクを追加">追加</button>
     </div>
 
-    <!-- Filter tabs (underline style) -->
+    <!-- Filter tabs -->
     <div class="filter-bar" role="group" aria-label="表示フィルター">
         <button class="filter-btn active" data-filter="all">すべて</button>
         <button class="filter-btn" data-filter="active">未完了</button>
-        <button class="filter-btn" data-filter="completed">完了済</button>
+        <button class="filter-btn" data-filter="completed">完了済み</button>
     </div>
 
-    <!-- Todo list (populated by app.js) -->
-    <ul id="todo-list" aria-label="TODOリスト"></ul>
+    <!-- Task list (populated by app.js) -->
+    <ul id="todo-list" aria-label="タスク一覧"></ul>
 
-    <!-- Footer: count + clear completed -->
+    <!-- Footer: count + bulk clear -->
     <div class="todo-footer">
-        <span id="count-label"></span>
+        <span id="count-label" aria-live="polite"></span>
         <button id="clear-completed" style="display:none">完了済みを片付ける</button>
     </div>
 
 </div>
 
-<!-- API_BASE must be defined before app.js loads -->
 <script>const API_BASE = '/api/nodejs';</script>
 <script src="../js/app.js"></script>
 </body>
