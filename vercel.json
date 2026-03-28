@@ -9,5 +9,35 @@
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/api/nodejs/(.*)", "destination": "/nodejs/main" },
+    { "source": "/api/nodejs",      "destination": "/nodejs/main" },
+    { "source": "/api/express/(.*)", "destination": "/express/main" },
+    { "source": "/api/express",      "destination": "/express/main" },
+    { "source": "/api/hono/(.*)",   "destination": "/hono/main" },
+    { "source": "/api/hono",        "destination": "/hono/main" },
+    { "source": "/api/bun/(.*)",    "destination": "/bun/main" },
+    { "source": "/api/bun",         "destination": "/bun/main" },
+    { "source": "/api/flask/(.*)",  "destination": "/flask/main" },
+    { "source": "/api/flask",       "destination": "/flask/main" },
+    { "source": "/api/fastapi/(.*)", "destination": "/fastapi/main" },
+    { "source": "/api/fastapi",      "destination": "/fastapi/main" },
+    { "source": "/api/django/(.*)", "destination": "/django/main" },
+    { "source": "/api/django",      "destination": "/django/main" },
+    { "source": "/api/go/(.*)",     "destination": "/go/main" },
+    { "source": "/api/go",          "destination": "/go/main" },
+    { "source": "/api/gin/(.*)",    "destination": "/gin/main" },
+    { "source": "/api/gin",         "destination": "/gin/main" },
+    { "source": "/api/echo/(.*)",   "destination": "/echo/main" },
+    { "source": "/api/echo",        "destination": "/echo/main" },
+    { "source": "/api/fiber/(.*)",  "destination": "/fiber/main" },
+    { "source": "/api/fiber",       "destination": "/fiber/main" },
+    { "source": "/api/rails/(.*)",  "destination": "/ruby_rails/main" },
+    { "source": "/api/rails",       "destination": "/ruby_rails/main" },
+    { "source": "/api/sinatra/(.*)", "destination": "/sinatra/main" },
+    { "source": "/api/sinatra",      "destination": "/sinatra/main" },
+    { "source": "/api/php/(.*)",    "destination": "/php/main" },
+    { "source": "/api/php",         "destination": "/php/main" }
   ]
 }

@@ -344,50 +344,50 @@ Headers:
 
 ### フェーズ2 — Node.js バックエンド
 
-- [ ] `nodejs/main.js` — Node.js http モジュール版 API
-- [ ] `express/main.js` — Express 4 版 API
-- [ ] `hono/main.js` — Hono (TypeScript) 版 API
-- [ ] `bun/main.js` — Bun Runtime 版 API
-- [ ] `package.json` (各ディレクトリ) — 依存関係定義
+- [x] `nodejs/main.js` — Node.js http モジュール版 API
+- [x] `express/main.js` — Express 4 版 API（`package.json` 含む）
+- [x] `hono/main.js` — Hono (ESM) 版 API（`package.json` 含む）
+- [x] `bun/main.js` — Bun Runtime 版 API
 - [ ] 動作確認・Vercel デプロイテスト
 
 ### フェーズ3 — Python バックエンド
 
-- [ ] `flask/main.py` — Flask 版 API（`requirements.txt` 含む）
-- [ ] `fastapi/main.py` — FastAPI 版 API（`requirements.txt` 含む）
-- [ ] `django/main.py` — Django REST Framework 版 API
+- [x] `flask/main.py` — Flask 版 API（`requirements.txt` 含む）
+- [x] `fastapi/main.py` — FastAPI 版 API（`requirements.txt` 含む）
+- [x] `django/main.py` — Django REST Framework 版 API（`requirements.txt` 含む）
 - [ ] 動作確認
 
 ### フェーズ4 — Go バックエンド
 
-- [ ] `go/main.go` — net/http 版 API（`go.mod` 含む）
-- [ ] `gin/main.go` — Gin 版 API
-- [ ] `echo/main.go` — Echo 版 API
-- [ ] `fiber/main.go` — Fiber 版 API
+- [x] `go/main.go` — net/http 版 API（`go.mod` 含む）
+- [x] `gin/main.go` — Gin 版 API（`go.mod` 含む）
+- [x] `echo/main.go` — Echo 版 API（`go.mod` 含む）
+- [x] `fiber/main.go` — Fiber 版 API（`go.mod` 含む）
 - [ ] 動作確認
 
 ### フェーズ5 — Ruby / PHP バックエンド
 
-- [ ] `ruby_rails/main.ru` — Rails API 版（`Gemfile` 含む）
-- [ ] `sinatra/main.ru` — Sinatra 版（`Gemfile` 含む）
-- [ ] `php/main.php` — PHP 8 版 API
+- [x] `ruby_rails/main.ru` — Rack ベース Rails スタイル API（`Gemfile` 含む）
+- [x] `sinatra/main.ru` — Sinatra 版 API（`Gemfile` 含む）
+- [x] `php/main.php` — PHP 8 版 API
 - [ ] 動作確認
 
 ### フェーズ6 — JVM 系（外部デプロイ）
 
-- [ ] `spring/Main.java` — Spring Boot API（`pom.xml` / `Dockerfile` 含む）
-- [ ] `kotlin/Main.kt` — Ktor API（`build.gradle.kts` 含む）
-- [ ] `scala/Main.scala` — Play Framework API（`build.sbt` 含む）
+- [x] `spring/Main.java` — Spring Boot API（`pom.xml` 含む）
+- [x] `kotlin/Main.kt` — Ktor API（`build.gradle.kts` 含む）
+- [x] `scala/Main.scala` — Play Framework API（`build.sbt` 含む）
 - [ ] Railway / Render デプロイ設定
 - [ ] フロントエンドの `API_BASE` を外部 URL に向ける
 
 ### フェーズ7 — Rust / C# / その他（外部デプロイ）
 
-- [ ] `rust/main.rs` — Actix-web API（`Cargo.toml` + `Dockerfile` 含む）
-- [ ] `csharp/Program.cs` — ASP.NET Core Minimal API（`.csproj` + `Dockerfile` 含む）
-- [ ] `elixir/main.ex` — Phoenix API（`mix.exs` + `Dockerfile` 含む）
-- [ ] `swift/main.swift` — Vapor API（`Package.swift` + `Dockerfile` 含む）
-- [ ] `perl/main.pl` — Mojolicious API
+- [x] `rust/main.rs` — Actix-web API（`Cargo.toml` 含む）
+- [x] `csharp/Program.cs` — ASP.NET Core Minimal API（`.csproj` 含む）
+- [x] `elixir/main.ex` — Phoenix API（`mix.exs` 含む）
+- [x] `swift/main.swift` — Vapor API（`Package.swift` 含む）
+- [x] `perl/main.pl` — Mojolicious API
+- [x] `deno/main.ts` — Deno Deploy 版 API
 - [ ] Fly.io / Railway デプロイ設定
 
 ### フェーズ8 — 仕上げ
@@ -444,27 +444,28 @@ Access-Control-Allow-Headers: Content-Type
 
 | 言語/FW | HTML | API実装 | デプロイ | 備考 |
 |---------|------|---------|---------|------|
-| Node.js (http) | ✅ | ⬜ | ⬜ | フェーズ2 |
-| Express | ✅ | ⬜ | ⬜ | フェーズ2 |
-| Hono | ✅ | ⬜ | ⬜ | フェーズ2 |
-| Bun | ✅ | ⬜ | ⬜ | フェーズ2 |
-| Flask | ✅ | ⬜ | ⬜ | フェーズ3 |
-| FastAPI | ✅ | ⬜ | ⬜ | フェーズ3 |
-| Django REST | ✅ | ⬜ | ⬜ | フェーズ3 |
-| Go (net/http) | ✅ | ⬜ | ⬜ | フェーズ4 |
-| Gin | ✅ | ⬜ | ⬜ | フェーズ4 |
-| Echo | ✅ | ⬜ | ⬜ | フェーズ4 |
-| Fiber | ✅ | ⬜ | ⬜ | フェーズ4 |
-| Ruby on Rails | ✅ | ⬜ | ⬜ | フェーズ5 / 外部 |
-| Sinatra | ✅ | ⬜ | ⬜ | フェーズ5 |
-| PHP | ✅ | ⬜ | ⬜ | フェーズ5 |
-| Spring Boot | ✅ | ⬜ | ⬜ | フェーズ6 / 外部 |
-| Ktor | ✅ | ⬜ | ⬜ | フェーズ6 / 外部 |
-| Play (Scala) | ✅ | ⬜ | ⬜ | フェーズ6 / 外部 |
-| Rust (Actix) | ✅ | ⬜ | ⬜ | フェーズ7 / 外部 |
-| ASP.NET Core | ✅ | ⬜ | ⬜ | フェーズ7 / 外部 |
-| Phoenix (Elixir) | ✅ | ⬜ | ⬜ | フェーズ7 / 外部 |
-| Vapor (Swift) | ✅ | ⬜ | ⬜ | フェーズ7 / 外部 |
-| Mojolicious (Perl) | ✅ | ⬜ | ⬜ | フェーズ7 / 外部 |
+| Node.js (http) | ✅ | ✅ | ⬜ | フェーズ2 |
+| Express | ✅ | ✅ | ⬜ | フェーズ2 |
+| Hono | ✅ | ✅ | ⬜ | フェーズ2 |
+| Bun | ✅ | ✅ | ⬜ | フェーズ2 |
+| Flask | ✅ | ✅ | ⬜ | フェーズ3 |
+| FastAPI | ✅ | ✅ | ⬜ | フェーズ3 |
+| Django REST | ✅ | ✅ | ⬜ | フェーズ3 |
+| Go (net/http) | ✅ | ✅ | ⬜ | フェーズ4 |
+| Gin | ✅ | ✅ | ⬜ | フェーズ4 |
+| Echo | ✅ | ✅ | ⬜ | フェーズ4 |
+| Fiber | ✅ | ✅ | ⬜ | フェーズ4 |
+| Ruby on Rails | ✅ | ✅ | ⬜ | フェーズ5 / 外部 |
+| Sinatra | ✅ | ✅ | ⬜ | フェーズ5 |
+| PHP | ✅ | ✅ | ⬜ | フェーズ5 |
+| Spring Boot | ✅ | ✅ | ⬜ | フェーズ6 / 外部 |
+| Ktor | ✅ | ✅ | ⬜ | フェーズ6 / 外部 |
+| Play (Scala) | ✅ | ✅ | ⬜ | フェーズ6 / 外部 |
+| Rust (Actix) | ✅ | ✅ | ⬜ | フェーズ7 / 外部 |
+| ASP.NET Core | ✅ | ✅ | ⬜ | フェーズ7 / 外部 |
+| Phoenix (Elixir) | ✅ | ✅ | ⬜ | フェーズ7 / 外部 |
+| Vapor (Swift) | ✅ | ✅ | ⬜ | フェーズ7 / 外部 |
+| Mojolicious (Perl) | ✅ | ✅ | ⬜ | フェーズ7 / 外部 |
+| Deno | ✅ | ✅ | ⬜ | フェーズ7 / Deno Deploy |
 
 **凡例:** ✅ 完了 / ⬜ 未着手 / 🔄 進行中
