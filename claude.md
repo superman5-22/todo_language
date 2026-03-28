@@ -370,6 +370,7 @@ Headers:
 - [x] `ruby_rails/main.ru` — Rack ベース Rails スタイル API（`Gemfile` 含む）
 - [x] `sinatra/main.ru` — Sinatra 版 API（`Gemfile` 含む）
 - [x] `php/main.php` — PHP 8 版 API
+- [x] `laravel/main.php` — PHP Laravel 版 API（`composer.json` 含む）
 - [ ] 動作確認
 
 ### フェーズ6 — JVM 系（外部デプロイ）
@@ -458,6 +459,7 @@ Access-Control-Allow-Headers: Content-Type
 | Ruby on Rails | ✅ | ✅ | ⬜ | フェーズ5 / 外部 |
 | Sinatra | ✅ | ✅ | ⬜ | フェーズ5 |
 | PHP | ✅ | ✅ | ⬜ | フェーズ5 |
+| Laravel | ✅ | ✅ | ⬜ | フェーズ5 / 外部 |
 | Spring Boot | ✅ | ✅ | ⬜ | フェーズ6 / 外部 |
 | Ktor | ✅ | ✅ | ⬜ | フェーズ6 / 外部 |
 | Play (Scala) | ✅ | ✅ | ⬜ | フェーズ6 / 外部 |

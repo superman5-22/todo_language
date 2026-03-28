@@ -1,0 +1,10 @@
+{
+  "name": "todo/laravel",
+  "description": "TODO API — PHP Laravel (Railway deployment)",
+  "require": {
+    "php": "^8.2"
+  },
+  "scripts": {
+    "start": "php -S 0.0.0.0:${PORT:-8080} main.php"
+  }
+}
