@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Language TODO App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Index-only styles */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #818cf8, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .75rem;
+        }
+        .hero p {
+            color: var(--color-text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin: 2.5rem 0 1rem;
+        }
+        .legend {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            font-size: .82rem;
+            color: var(--color-text-muted);
+        }
+        .legend-item { display: flex; align-items: center; gap: .35rem; }
+        .container.wide { max-width: 900px; }
+    </style>
+</head>
+<body>
+    <div class="container wide">
+        <div class="hero">
+            <h1>Multi-Language TODO App</h1>
+            <p>同一のフロントエンド・データベースを使い、<br>様々なバックエンド言語・フレームワークでTODO APIを実装・比較するプロジェクト。</p>
+            <div style="margin-top:1rem;font-size:.8rem;color:var(--color-text-muted);font-family:var(--font-mono)">
+                Backend: Supabase (PostgreSQL) &nbsp;|&nbsp; Deploy: Vercel
+            </div>
+        </div>
+
+        <div class="legend">
+            <span class="legend-item"><span class="status-pill done" style="font-size:.75rem;padding:.15rem .5rem">✓ 実装済</span></span>
+            <span class="legend-item"><span class="status-pill planned" style="font-size:.75rem;padding:.15rem .5rem">◷ 実装予定</span></span>
+            <span class="legend-item"><span class="status-pill external" style="font-size:.75rem;padding:.15rem .5rem">⚡ 外部デプロイ</span></span>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- JavaScript / TypeScript                                           -->
+        <!-- ================================================================ -->
+        <div class="section-title">JavaScript / TypeScript</div>
+        <div class="lang-grid">
+            <a href="nodejs/todo_nodejs.html" class="lang-card">
+                <span class="icon">🟢</span>
+                <span class="name">Node.js</span>
+                <span class="framework">Runtime (http)</span>
+                <span class="status-pill done">✓ 実装済</span>
+            </a>
+            <a href="express/todo_express.html" class="lang-card">
+                <span class="icon">🚂</span>
+                <span class="name">Express</span>
+                <span class="framework">Node.js / Express 4</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="hono/todo_hono.html" class="lang-card">
+                <span class="icon">🔥</span>
+                <span class="name">Hono</span>
+                <span class="framework">TypeScript / Hono</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="deno/todo_deno.html" class="lang-card">
+                <span class="icon">🦕</span>
+                <span class="name">Deno</span>
+                <span class="framework">Deno Runtime</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="bun/todo_bun.html" class="lang-card">
+                <span class="icon">🍞</span>
+                <span class="name">Bun</span>
+                <span class="framework">Bun Runtime</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- Python                                                            -->
+        <!-- ================================================================ -->
+        <div class="section-title">Python</div>
+        <div class="lang-grid">
+            <a href="flask/todo_flask.html" class="lang-card">
+                <span class="icon">🐍</span>
+                <span class="name">Flask</span>
+                <span class="framework">Python / Flask</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="fastapi/todo_fastapi.html" class="lang-card">
+                <span class="icon">⚡</span>
+                <span class="name">FastAPI</span>
+                <span class="framework">Python / FastAPI</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="django/todo_django.html" class="lang-card">
+                <span class="icon">🎸</span>
+                <span class="name">Django</span>
+                <span class="framework">Python / Django REST</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- Go                                                                -->
+        <!-- ================================================================ -->
+        <div class="section-title">Go</div>
+        <div class="lang-grid">
+            <a href="go/todo_go.html" class="lang-card">
+                <span class="icon">🐹</span>
+                <span class="name">Go</span>
+                <span class="framework">net/http (stdlib)</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="gin/todo_gin.html" class="lang-card">
+                <span class="icon">🍸</span>
+                <span class="name">Gin</span>
+                <span class="framework">Go / Gin</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="echo/todo_echo.html" class="lang-card">
+                <span class="icon">🔊</span>
+                <span class="name">Echo</span>
+                <span class="framework">Go / Echo</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="fiber/todo_fiber.html" class="lang-card">
+                <span class="icon">🌀</span>
+                <span class="name">Fiber</span>
+                <span class="framework">Go / Fiber</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- Ruby                                                              -->
+        <!-- ================================================================ -->
+        <div class="section-title">Ruby</div>
+        <div class="lang-grid">
+            <a href="ruby_rails/todo_rails.html" class="lang-card">
+                <span class="icon">💎</span>
+                <span class="name">Ruby on Rails</span>
+                <span class="framework">Ruby / Rails API</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="sinatra/todo_sinatra.html" class="lang-card">
+                <span class="icon">🎤</span>
+                <span name="name">Sinatra</span>
+                <span class="framework">Ruby / Sinatra</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- PHP                                                               -->
+        <!-- ================================================================ -->
+        <div class="section-title">PHP</div>
+        <div class="lang-grid">
+            <a href="php/todo_php.html" class="lang-card">
+                <span class="icon">🐘</span>
+                <span class="name">PHP</span>
+                <span class="framework">PHP 8 (stdlib)</span>
+                <span class="status-pill planned">◷ 実装予定</span>
+            </a>
+            <a href="laravel/todo_laravel.html" class="lang-card">
+                <span class="icon">🎡</span>
+                <span class="name">Laravel</span>
+                <span class="framework">PHP / Laravel</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- Java / JVM                                                        -->
+        <!-- ================================================================ -->
+        <div class="section-title">Java / JVM 系</div>
+        <div class="lang-grid">
+            <a href="spring/todo_spring.html" class="lang-card">
+                <span class="icon">🍃</span>
+                <span class="name">Spring Boot</span>
+                <span class="framework">Java / Spring Boot</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+            <a href="kotlin/todo_kotlin.html" class="lang-card">
+                <span class="icon">🦺</span>
+                <span class="name">Ktor</span>
+                <span class="framework">Kotlin / Ktor</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+            <a href="scala/todo_scala.html" class="lang-card">
+                <span class="icon">🔴</span>
+                <span class="name">Play Framework</span>
+                <span class="framework">Scala / Play</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- Rust                                                              -->
+        <!-- ================================================================ -->
+        <div class="section-title">Rust</div>
+        <div class="lang-grid">
+            <a href="rust/todo_rust.html" class="lang-card">
+                <span class="icon">🦀</span>
+                <span class="name">Rust</span>
+                <span class="framework">Actix-web</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- C# / .NET                                                        -->
+        <!-- ================================================================ -->
+        <div class="section-title">C# / .NET</div>
+        <div class="lang-grid">
+            <a href="csharp/todo_csharp.html" class="lang-card">
+                <span class="icon">🔷</span>
+                <span class="name">ASP.NET Core</span>
+                <span class="framework">C# / Minimal API</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+        </div>
+
+        <!-- ================================================================ -->
+        <!-- Functional / Other                                                -->
+        <!-- ================================================================ -->
+        <div class="section-title">その他の言語</div>
+        <div class="lang-grid">
+            <a href="elixir/todo_elixir.html" class="lang-card">
+                <span class="icon">💜</span>
+                <span class="name">Phoenix</span>
+                <span class="framework">Elixir / Phoenix</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+            <a href="swift/todo_swift.html" class="lang-card">
+                <span class="icon">🐦</span>
+                <span class="name">Vapor</span>
+                <span class="framework">Swift / Vapor</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+            <a href="perl/todo_perl.html" class="lang-card">
+                <span class="icon">🐪</span>
+                <span class="name">Perl</span>
+                <span class="framework">Perl / Mojolicious</span>
+                <span class="status-pill external">⚡ 外部デプロイ</span>
+            </a>
+        </div>
+
+        <div style="text-align:center;margin-top:3rem;color:var(--color-text-muted);font-size:.8rem">
+            Built with Supabase + Vercel &nbsp;·&nbsp;
+            <a href="https://github.com/superman5-22/todo_language" target="_blank">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>

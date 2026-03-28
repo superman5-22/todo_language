@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App — ASP.NET Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+            言語一覧に戻る
+        </a>
+        <header class="app-header">
+            <h1>TODO App</h1>
+            <p class="subtitle">バックエンド: C# (ASP.NET Core Minimal API)</p>
+            <div class="lang-badge">
+                <span class="dot"></span>
+                ASP.NET Core &nbsp;·&nbsp; Azure / Railway
+            </div>
+        </header>
+        <div id="status-bar" role="alert" aria-live="polite"></div>
+        <div class="input-row">
+            <input type="text" id="todo-input" placeholder="新しいタスクを入力..." autocomplete="off">
+            <button id="add-btn" class="btn btn-primary">追加</button>
+        </div>
+        <div class="filter-bar" role="group" aria-label="表示フィルター">
+            <button class="filter-btn active" data-filter="all">すべて</button>
+            <button class="filter-btn" data-filter="active">未完了</button>
+            <button class="filter-btn" data-filter="completed">完了済</button>
+        </div>
+        <ul id="todo-list" aria-label="TODOリスト"></ul>
+        <div class="todo-footer">
+            <span id="count-label"></span>
+            <button id="clear-completed" class="clear-completed" style="display:none">完了済みを削除</button>
+        </div>
+    </div>
+    <script>
+        const API_BASE = '/api/csharp';
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

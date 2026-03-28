@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/api/nodejs/:path*",  "destination": "/nodejs/main.js" },
+    { "source": "/api/express/:path*", "destination": "/express/main.js" },
+    { "source": "/api/hono/:path*",    "destination": "/hono/main.js" },
+    { "source": "/api/bun/:path*",     "destination": "/bun/main.js" },
+    { "source": "/api/flask/:path*",   "destination": "/flask/main.py" },
+    { "source": "/api/fastapi/:path*", "destination": "/fastapi/main.py" },
+    { "source": "/api/go/:path*",      "destination": "/go/main.go" },
+    { "source": "/api/gin/:path*",     "destination": "/gin/main.go" },
+    { "source": "/api/echo/:path*",    "destination": "/echo/main.go" },
+    { "source": "/api/php/:path*",     "destination": "/php/main.php" },
+    { "source": "/api/ruby/:path*",    "destination": "/ruby_rails/main.ru" }
+  ],
+  "functions": {
+    "nodejs/main.js":  { "runtime": "nodejs20.x", "memory": 256, "maxDuration": 10 },
+    "express/main.js": { "runtime": "nodejs20.x", "memory": 256, "maxDuration": 10 },
+    "hono/main.js":    { "runtime": "nodejs20.x", "memory": 256, "maxDuration": 10 },
+    "bun/main.js":     { "runtime": "nodejs20.x", "memory": 256, "maxDuration": 10 },
+    "flask/main.py":   { "runtime": "python3.12", "memory": 256, "maxDuration": 10 },
+    "fastapi/main.py": { "runtime": "python3.12", "memory": 256, "maxDuration": 10 },
+    "go/main.go":      { "runtime": "go1.22.x",   "memory": 256, "maxDuration": 10 },
+    "gin/main.go":     { "runtime": "go1.22.x",   "memory": 256, "maxDuration": 10 },
+    "echo/main.go":    { "runtime": "go1.22.x",   "memory": 256, "maxDuration": 10 },
+    "php/main.php":    { "runtime": "vercel-php@0.7.2", "memory": 256, "maxDuration": 10 },
+    "ruby_rails/main.ru": { "runtime": "vercel-ruby@3.3.0", "memory": 256, "maxDuration": 10 }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin",  "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PATCH, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    }
+  ]
+}
